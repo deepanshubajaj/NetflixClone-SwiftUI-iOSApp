@@ -69,7 +69,9 @@ struct WebViewContainer: UIViewRepresentable {
         override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
             if keyPath == #keyPath(WKWebView.estimatedProgress),
                let webView = object as? WKWebView {
-                webViewState.estimatedProgress = webView.estimatedProgress
+                 DispatchQueue.main.async {
+                    self.webViewState.estimatedProgress = webView.estimatedProgress
+                }
             }
         }
         
